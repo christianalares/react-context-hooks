@@ -1,9 +1,27 @@
 import React from 'react'
-import StateContext from '../../state/StateContext'
+import { useStateValue } from '../../store/StateProvider'
+import AddTodoForm from '../AddTodoForm/AddTodoForm'
+import styles from './todoList.module.scss'
 
 const TodoList = () => {
+	const [state, dispatch] = useStateValue()
+	const handleClick = id => {
+		dispatch({
+			type: 'toggleDone',
+			payload: { id }
+		})
+	}
 	return (
-		<StateContext.Consumer>{value => console.log(value) || <p>Hejsan</p>}</StateContext.Consumer>
+		<>
+			<ul className={styles.test}>
+				{state.todos.map(todo => (
+					<li className={todo.isDone ? styles.isDone : ''} key={todo.id}>
+						{todo.text} <button onClick={() => handleClick(todo.id)}>✓</button>
+					</li>
+				))}
+			</ul>
+			<AddTodoForm />
+		</>
 	)
 }
 

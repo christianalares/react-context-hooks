@@ -2,15 +2,18 @@ const initialState = {
 	todos: [
 		{
 			id: 1,
-			text: 'Bröd'
+			text: 'Bröd',
+			isDone: false
 		},
 		{
 			id: 2,
-			text: 'Mjölk'
+			text: 'Mjölk',
+			isDone: false
 		},
 		{
 			id: 3,
-			text: 'Tvättmedel'
+			text: 'Tvättmedel',
+			isDone: false
 		}
 	]
 }
