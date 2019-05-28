@@ -25,15 +25,23 @@ const reducer = (state, action) => {
 			}
 
 		case 'add':
+			const newId = [...state.todos].sort((a, b) => a > b).pop().id + 1
+
 			return {
 				...state,
 				todos: [
 					...state.todos,
 					{
-						id: state.todos.length + 1,
+						id: newId,
 						text: action.payload.text
 					}
 				]
+			}
+
+		case 'delete':
+			return {
+				...state,
+				todos: state.todos.filter(todo => todo.id !== action.payload.id)
 			}
 
 		default:
